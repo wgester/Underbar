@@ -71,10 +71,24 @@ var _ = { };
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, iterator) {
+	  var sArray = []
+	  for (var i = 0; i < collection.length; i ++){
+		  if (iterator(collection[i])){
+			  sArray.push(collection[i]);
+		  }
+	  }
+	  return sArray
   };
 
   // Return all elements of an array that don't pass a truth test.
   _.reject = function(collection, iterator) {
+	  var sArray = []
+	  for (var i = 0; i < collection.length; i ++){
+		  if (_.indexOf(_.filter(collection, iterator), collection[i]) === (-1)){
+			  sArray.push(collection[i]);
+		  }
+	  }
+	  return sArray
     // TIP: see if you can re-use _.select() here, without simply
     // copying code in and modifying it
   };
