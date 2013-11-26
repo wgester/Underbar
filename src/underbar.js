@@ -154,6 +154,15 @@ var _ = { };
   //   }, 0); // should be 6
   //
   _.reduce = function(collection, iterator, initialValue) {
+	  if (initialValue === undefined){
+		  var previousValue = 0;
+	  } else {
+		  var previousValue = initialValue;
+	  }
+	  for (var i = 0; i < collection.length; i ++){
+		  previousValue = iterator(previousValue, collection[i]);
+	  }
+	  return previousValue
   };
 
   // Determine if the array or object contains a given value (using `===`).
