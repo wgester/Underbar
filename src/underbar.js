@@ -159,7 +159,7 @@ var _ = { };
 	  } else {
 		  var previousValue = initialValue;
 	  }
-	  for (var i = 0; i < collection.length; i ++){
+	  for (var i in collection){
 		  previousValue = iterator(previousValue, collection[i]);
 	  }
 	  return previousValue
@@ -170,7 +170,7 @@ var _ = { };
     // TIP: Many iteration problems can be most easily expressed in
     // terms of reduce(). Here's a freebie to demonstrate!
     return _.reduce(collection, function(wasFound, item) {
-      if(wasFound) {
+	  if(wasFound) {
         return true;
       }
       return item === target;
