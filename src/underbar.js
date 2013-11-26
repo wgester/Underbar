@@ -107,6 +107,11 @@ var _ = { };
 
   // Return the results of applying an iterator to each element.
   _.map = function(array, iterator) {
+	  var nArray = [];
+	  for (var i = 0; i < array.length; i ++){
+		  nArray.push(iterator(array[i]));
+	  }
+	  return nArray;
     // map() is a useful primitive iteration function that works a lot
     // like each(), but in addition to running the operation on all
     // the members, it also maintains an array of results.
@@ -132,6 +137,7 @@ var _ = { };
 
   // Calls the method named by methodName on each value in the list.
   _.invoke = function(list, methodName, args) {
+	  
   };
 
   // Reduces an array or object to a single value by repetitively calling
