@@ -193,18 +193,15 @@ var _ = { };
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
 	  if (iterator === undefined){
-		  var t = true;
-		  for (var i = 0; i < collection.length; i ++){
-			  var t = t === collection[i];
-		  }
-		  return t;
+		  iterator = function(input){
+			  return input == true;
+		  };
 	  }
 	  return _.reduce(collection, function(match, item){
 		  if(!match){
 			  return false;
 		  }
 		  return  true == iterator(item);
-		  
 	  }, true);
     // TIP: Try re-using reduce() here.
   };
@@ -212,6 +209,13 @@ var _ = { };
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
   _.some = function(collection, iterator) {
+	  for (var i = 0; i < collection.length; i ++){
+		  var b = _.every([collection[i]], iterator);
+		  if (b === true){
+			  return true;
+		  }
+	  }
+	  return false;
     // TIP: There's a very clever way to re-use every() here.
   };
 
