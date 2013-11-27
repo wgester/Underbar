@@ -137,7 +137,19 @@ var _ = { };
 
   // Calls the method named by methodName on each value in the list.
   _.invoke = function(list, methodName, args) {
-	  
+	  var nArr = []
+	  if (typeof(methodName) === 'function'){
+		  for (var i = 0; i < list.length; i ++){
+			  var p = methodName.apply(list[i], args);
+			  nArr.push(p);
+		  }
+	  }else{
+		  for (var i = 0; i < list.length; i ++){
+			  var p = list[methodName].apply(list[i], args);
+			  nArr.push(p);
+		  }
+	  }
+	  return nArr;
   };
 
   // Reduces an array or object to a single value by repetitively calling
@@ -180,6 +192,12 @@ var _ = { };
 
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
+	  return _.reduce(collection, function(notMatch, item){
+		  if(!notMatch){
+			  return false;
+		  }
+		  return iterator(item);
+	  })
     // TIP: Try re-using reduce() here.
   };
 
