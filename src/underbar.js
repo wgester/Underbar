@@ -302,6 +302,13 @@ var _ = { };
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+	  var keys = {};
+	  return function(x){
+		  if (keys[x] === undefined){
+			  keys[x] = func(x);
+		  }
+		  return keys[x];
+	  };
   };
 
   // Delays a function for the given number of milliseconds, and then calls
