@@ -194,14 +194,18 @@ var _ = { };
   _.every = function(collection, iterator) {
 	  if (iterator === undefined){
 		  iterator = function(input){
-			  return input == true;
+			  return input;
 		  };
 	  }
 	  return _.reduce(collection, function(match, item){
 		  if(!match){
 			  return false;
 		  }
-		  return  true == iterator(item);
+		  if (iterator(item)){
+			  return true;
+		  }else{
+			  return false;
+		  };
 	  }, true);
     // TIP: Try re-using reduce() here.
   };
@@ -211,7 +215,7 @@ var _ = { };
   _.some = function(collection, iterator) {
 	  for (var i = 0; i < collection.length; i ++){
 		  var b = _.every([collection[i]], iterator);
-		  if (b === true){
+		  if (b){
 			  return true;
 		  }
 	  }
