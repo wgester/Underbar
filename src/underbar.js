@@ -334,18 +334,14 @@ var _ = { };
   // Shuffle an array.
   _.shuffle = function(array) {
 	  var nArray = [];
-	  var newArray = [];
 	  var length = array.length;
 	  while (nArray.length < length){
 		  var n = Math.floor(length * Math.random());
-		  if (_.indexOf(nArray, n) === (-1)){
-			  nArray.push(n);
+		  if (_.indexOf(nArray, array[n]) === (-1)){
+			  nArray.push(array[n]);
 		  }
 	  }
-	  for (var i = 0; i < nArray.length; i++){
-		  newArray.push(array[nArray[i]]);
-	  }
-	  return newArray;
+	  return nArray;
   };
 
 
