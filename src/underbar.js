@@ -435,7 +435,7 @@ var _ = { };
     }
     for (var i = 0; i < longestArray.length; i ++){
       var intersects = true;
-      for (var j = 0; j < arguments.length;j ++){
+      for (var j = 0; j < arguments.length; j ++){
         if (_.indexOf(arguments[j], longestArray[i]) === -1){
           intersects = false;
         }
@@ -450,6 +450,19 @@ var _ = { };
   // Take the difference between one array and a number of other arrays.
   // Only the elements present in just the first array will remain.
   _.difference = function(array) {
+    var returnArray = [];
+    for (var i = 0; i < array.length; i ++){
+      var intersects = false;
+      for (var j = 1; j < arguments.length; j ++){
+        if (_.indexOf(arguments[j], array[i]) !== -1){
+          intersects = true;
+        }
+      }
+      if (!intersects){
+        returnArray.push(array[i]);
+      }
+    }
+    return returnArray;
   };
 
 
