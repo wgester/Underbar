@@ -355,8 +355,27 @@ var _ = { };
   // If iterator is a string, sort objects by that property with the name
   // of that string. For example, _.sortBy(people, 'name') should sort
   // an array of people by their name.
-  _.sortBy = function(collection, iterator) {
-  };
+ /* _.sortBy = function(collection, iterator) {
+    var sorted = [];
+    for (var i in collection){
+      if (sorted.length === 0){
+        sorted.push(collection[i]);
+      } else {
+        for (var j = 0; j < sorted.length; j ++){
+          if (i[iterator] < sorted[j][iterator]){
+            sorted.splice(j, 0, collection[i]);
+            break;
+          } else if (i[iterator] > sorted[j][iterator]){
+            sorted.splice(j + 1, 0, collection[i]);
+            break;
+          } else {
+            sorted.push(collection[i]);
+          }
+        }
+      }
+    }
+    return sorted;
+  }; */
 
   // Zip together two or more arrays with elements of the same index
   // going together.
@@ -364,6 +383,25 @@ var _ = { };
   // Example:
   // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d',undefined]]
   _.zip = function() {
+    var array = []
+    var count = 0
+    for (var i = 0; i < arguments.length; i ++){
+      if (arguments[i].length > count){
+        count = arguments[i].length;
+      }
+    }
+    for (var i = 0; i < arguments.length; i ++){
+      for (var j = 0; j < count; j ++){
+        if (array[j] === undefined){
+          array[j] = [arguments[i][j]];
+        } else if (arguments[i][j] === undefined){
+          array[j].push(undefined);
+        }else {
+          array[j].push(arguments[i][j]);
+        }
+      }
+    }
+    return array;
   };
 
   // Takes a multidimensional array and converts it to a one-dimensional array.
